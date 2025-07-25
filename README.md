@@ -55,16 +55,27 @@ Automate semantic versioning and tagging on each push.
 ```yaml
 # .github/workflows/versioning.yml
 name: Auto Versioning
+
 on: push
+
 jobs:
   version:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: Generate SemVer
         run: echo "VERSION=1.0.$(date +%s)" >> $GITHUB_ENV
-      - name: Create Tag
-        run: git tag v${{ env.VERSION }}
+
+      - name: Create Git Tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag v${{ env.VERSION }}
+          git push origin v${{ env.VERSION }}
+
 ```
 
 **Steps Taken:**
@@ -82,17 +93,27 @@ jobs:
 ```yaml
 # .github/workflows/deploy-aws.yml
 name: Deploy to AWS
+
 on: [push]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: aws-actions/configure-aws-credentials@v3
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-      - run: aws s3 sync ./dist s3://your-bucket
+          aws-region: us-east-1  # Replace with your actual region
+
+      - name: Sync to S3
+        run: aws s3 sync ./dist s3://your-bucket-name
+
 ```
 
 **Steps Taken:**
