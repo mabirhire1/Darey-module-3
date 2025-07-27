@@ -209,6 +209,111 @@ sudo snap install kubectl --classic
 kubectl 1.28.5 from Canonical/ installed
 ```
 
+## Verification
+
+Verify your installation by checking the cluster status:
+
+```bash
+kubectl cluster-info
+```
+Check that all system pods are running:
+
+```bash
+kubectl get pods -A
+```
+**Expected Result**
+```bash
+kubectl get pods -n kube-system | grep metrics-server
+metrics-server-7fbb699795-xnx2r    1/1     Running   0             15m
+kubectl top nodes
+NAME       CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)
+minikube   232m         2%       1104Mi          28%
+```
+Verify Minikube status:
+
+```bash
+minikube status
+```
+**Expected output**
+```bash
+minikube status
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+```
+
+## Next Steps
+
+Now that you have Minikube running, you can:
+
+1. **Deploy your first application:**
+   ```bash
+   kubectl create deployment hello-minikube --image=gcr.io/google_containers/echoserver:1.4
+   ```
+
+2. **Expose the application:**
+   ```bash
+   kubectl expose deployment hello-minikube --type=NodePort --port=8080
+   ```
+
+  **Expected output**
+  ```bash
+  kubectl expose deployment hello-minikube --type=NodePort --port=8080
+  Error from server (AlreadyExists): services "hello-minikube" already exists
+  ```
+
+3. **Access the Minikube dashboard:**
+   ```bash
+   minikube dashboard
+   ```
+**Expected Output**
+![Dashboard](img/image3.png)
+
+4. **Practice Kubernetes concepts:**
+   - Create and manage pods
+   - Work with services and deployments
+   - Explore ConfigMaps and Secrets
+   - Practice scaling applications
+
+## Troubleshooting
+
+### Common Issues and Solutions
+
+**1. Docker Permission Denied:**
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+**2. Minikube Won't Start:**
+```bash
+minikube delete
+minikube start --driver=docker --force
+```
+
+**3. Check Minikube Logs:**
+```bash
+minikube logs
+```
+
+**4. Reset Minikube:**
+```bash
+minikube stop
+minikube delete --all
+minikube start --driver=docker
+```
+
+### Useful Commands
+
+- **Stop Minikube:** `minikube stop`
+- **Delete Minikube:** `minikube delete`
+- **Get Minikube IP:** `minikube ip`
+- **SSH into Minikube:** `minikube ssh`
+- **Open Dashboard:** `minikube dashboard`
+
 ## Installing Minikube on Mac
 
 For mac users, let's install minikube
