@@ -54,8 +54,9 @@ Run the command below to apply the YAML configuration and deploy the Pod:
 kubectl apply -f pod.yaml
 ```
 **output**
+```bash
 pod/myapp-pod created
-
+```
 ### Step 3: View Pods
 
 List all running Pods:
@@ -64,8 +65,10 @@ List all running Pods:
 kubectl get pods
 ```
 **Output**
+```bash
 NAME         READY   STATUS    RESTARTS   AGE
 myapp-pod    1/1     Running   0          10s
+```
 
 ### Step 4: Inspect a Pod
 
@@ -75,6 +78,7 @@ To describe the Pod and get detailed info (like events, state, container logs):
 kubectl describe pod myapp-pod
 ```
 **Output**
+```bash
 Name:         myapp-pod
 Namespace:    default
 Priority:     0
@@ -95,8 +99,8 @@ Events:
   Normal  Scheduled  10s   default-scheduler  Successfully assigned default/myapp-pod to minikube
   Normal  Pulled     9s    kubelet            Successfully pulled image "nginx"
   Normal  Started    9s    kubelet            Started container myapp-container
-
-## Step 5: Interact with the Pod
+```
+### Step 5: Interact with the Pod
 
 To execute commands inside the Pod:
 
@@ -104,12 +108,13 @@ To execute commands inside the Pod:
 kubectl exec -it myapp-pod -- /bin/bash
 ```
 **Output**
+```bash
 error: Internal error occurred: error executing command in container: failed to exec in container: failed to start exec "bash": executable not found
+---
 
 This error occured because the official nginx Docker image does not include /bin/bash — it only includes /bin/sh.
 
 **Working Alternative**
-
 ```bash
 kubectl exec -it myapp-pod -- /bin/sh
 ```
@@ -119,7 +124,7 @@ kubectl exec -it myapp-pod -- /bin/sh
 ```
 The shell prompt above will provide access inside the container, where you can run basic commands like ls, cat, curl, etc.
 
-## Step 6: Delete the Pod
+### Step 6: Delete the Pod
 
 To delete the Pod:
 
@@ -127,14 +132,15 @@ To delete the Pod:
 kubectl delete pod myapp-pod
 ```
 **Output**
+```bash
 pod "myapp-pod" deleted
+```
 
 ## Notes
 
 - Pods are **ephemeral** – changes made inside a running Pod will be lost if it’s deleted.
 - Use **Deployments** for managing Pod replicas and auto-recovery.
 - For persistent data, consider using **Volumes**.
-
 
 ## Conclusion
 
