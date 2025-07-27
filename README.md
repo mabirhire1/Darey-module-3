@@ -343,5 +343,5 @@ minikube start --driver=docker
 ```
 ## Conclusion
 
-You now have a fully functional local Kubernetes environment using Minikube on your Windows, Linux and Mac OS systems.This setup provides an excellent foundation for learning Kubernetes concepts.
+You now have a fully functional local Kubernetes environment using Minikube on your Windows, Linux and Mac OS systems.This setup provides an e xcellent foundation for learning Kubernetes concepts with great refernce to the Linux Operating System.
 ---
