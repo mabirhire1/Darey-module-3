@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container-pod
+spec:
+  # Define the volume at the Pod level
+  volumes:
+    - name: shared-data  # Name of your shared volume
+      emptyDir: {}       # An emptyDir volume is good for temporary shared storage within a Pod
+
+  containers:
+  - name: container-1
+    image: nginx
+    ports:
+    - containerPort: 80
+    volumeMounts:
+      - name: shared-data  # Mount the shared volume
+        mountPath: /usr/share/nginx/html # Mount it where Nginx expects its content
+
+  - name: container-2
+    image: busybox
+    command:
+      - /bin/sh
+      - -c
+      # Now, write to the mounted volume, not the non-existent busybox path
+      - "while true; do echo 'Hello from Container 2 (written at $(date))' >> /usr/share/nginx/html/index.html; sleep 10; done"
+    volumeMounts:
+      - name: shared-data  # Mount the same shared volume
+        mountPath: /usr/share/nginx/html # Mount it at the same path
