@@ -106,10 +106,9 @@ cat index.html
 
 - Both containers within the pod share a network namespace.
 - BusyBox writes to a file served by Nginx.
-- Nginx serves the HTML which can be accessed internally via `localhost` or forwarded to port 8080:80.
+- Nginx serves the HTML which can be accessed internally via `localhost`.
 
-![Forward to port](img/image2.png)
-![Webpage](img/image3.png)
+![Curl localhost](img/image2.png)
 
 ## Learning Outcome
 
