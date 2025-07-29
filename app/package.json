@@ -1,0 +1,12 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "description": "Dynamic web app for ECS deployment",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.0"
+  }
+}
