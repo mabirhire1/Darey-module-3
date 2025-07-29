@@ -1,0 +1,7 @@
+FEEDBACK FOR IMPROVEMENT
+
+Optimization of Terraform Variables: While the project is functional, it could benefit slightly from more advanced optimizations, 
+such as utilizing variables.tf files for better organization of variables.
+
+Dependencies: The AWS provider version (~> 5.0) may cause slight incompatibilities in some environments that don't meet specific versions. 
+This could be resolved by adding warnings or checks for users during terraform init.
