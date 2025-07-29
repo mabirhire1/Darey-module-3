@@ -1,0 +1,24 @@
+---
+- name: Automate user creation
+  hosts: linux_servers
+  become: yes
+  tasks:
+    - name: Create a new user with additional settings
+      user:
+        name: "{{ item.username }}"
+        state: present
+        shell: /bin/bash
+        create_home: yes
+        groups: "{{ item.groups }}"
+      with_items:
+        - { username: "user1", groups: "sudo" }
+        - { username: "user2", groups: "docker" }
+
+    - name: Add SSH key for the users
+      authorized_key:
+        user: "{{ item.username }}"
+        state: present
+        key: "{{ lookup('file', item.ssh_key) }}"
+      with_items:
+        - { username: "user1", ssh_key: "/path/to/user1.pub" }
+        - { username: "user2", ssh_key: "/path/to/user2.pub" }
