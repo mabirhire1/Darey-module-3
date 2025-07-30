@@ -1,0 +1,24 @@
+endpoints:
+  - name: Example website
+    url: "https://example.com"
+    interval: 60s
+    conditions:
+      - "[STATUS] == 200"
+      
+  - name: GitHub
+    url: "https://github.com"
+    interval: 60s
+    conditions:
+      - "[STATUS] == 200"
+
+  - name: google
+    url: "https://www.google.com"
+    interval: 60s
+    conditions:
+      - "[STATUS] == 200"
+
+  - name: docker-hub
+    url: "https://hub.docker.com"
+    interval: 60s
+    conditions:
+      - "[STATUS] == 200"
