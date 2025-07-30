@@ -1,0 +1,17 @@
+- name: Backup files on the server
+  hosts: linux_servers
+  tasks:
+    - name: Create backup directory
+      file:
+        path: /backup
+        state: directory
+        mode: '0755'
+      become: true
+      become_user: root
+
+
+    - name: Copy files to backup directory
+      copy:
+        src: /var/www/
+        dest: /backup/www/
+        remote_src: yes

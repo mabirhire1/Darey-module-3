@@ -1,0 +1,18 @@
+- name: Restore files from backup
+  hosts: linux_servers
+  become: yes
+  tasks:
+    - name: Stop nginx service during restore
+      systemd:
+        name: nginx
+        state: stopped
+
+    - name: Restore website files from backup
+      copy:
+        src: /backup/nginx-backup/www/
+        dest: /var/www/
+        remote_src: yes
+        backup: yes
+        owner: www-data
+        group: www-data
+        mode: preserve
