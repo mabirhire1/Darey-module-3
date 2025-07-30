@@ -1,0 +1,23 @@
+Weaknesses:
+
+Prometheus Scrape Configuration:
+
+- The Prometheus scrape configuration lacks precise details on setting up the prometheus-config.yaml file. There is no mention or validation if Prometheus is installed with the Operator or manually.
+- Missing example Prometheus targets to validate the configuration working correctly.
+
+Incomplete Validation Steps:
+
+- While port-forwarding is highlighted for initial UI access, there is no guidance on automating this with an ingress resource or LoadBalancer for long-term use.
+
+Troubleshooting Not Comprehensive:
+
+- Common issues suggest verifying node resources but don't dive deep into debugging more complex scenarios like firewall rules or Prometheus job misconfigurations.
+Security Considerations:
+- The deployment does not cover adding a ServiceAccount, RBAC configurations, or ensuring Node Exporter pods run securely with minimal permissions.
+
+Suggestions for Improvement:
+
+- Include fully functional and correctly indented YAML for Node Exporter DaemonSet deployment.
+- Provide examples of manual Prometheus configuration file details or integrate this with Prometheus Operator.
+- Highlight solutions for ensuring Node Exporter survives common scenarios, e.g., node scaling, cluster upgrades, or restarting instances.
+- Add RBAC for enhanced security, explaining its necessity and steps to configure it for the project.
