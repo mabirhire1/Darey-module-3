@@ -32,7 +32,7 @@ i. Create a new github repository called jenkins-scm with a README.md file
 
 ii. Connect `jenkins` to `jenkins-scm` repository by pasting the repository url in the area selected below. Make sure your current branch is `main`
 
-![jenkins-scm](img/image2.png)
+![jenkins-scm](img/image1a.png)
 
 We have successfully connected jenkins with our github repository (jenkins-scm)
 
@@ -51,4 +51,6 @@ iii. Create a github webhook using jenkins ip address and port
 Now, go ahead and make some change in any file in your GitHub repository (e.g. README.MD file) and push the changes to the master branch.
 
 You will see that a new build has been launched automatically (by webhook).
+
+![Console Output](img/image4.png)
 ---
